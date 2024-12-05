@@ -12,7 +12,6 @@ module Top_Module (
     wire [1:0] dotOrDash;
     
     timing_control TIM(.clk(clk), .button(button), .send(send), .dotOrDash(dotOrDash));
-    //morseDecoder2 DEC(.clk(clk), .dotOrDash(dotOrDash), .inputSignal(inputSignal));
     morseFSM FSM(.inputSignal(dotOrDash), .clk(clk), .letter(letter), .done(done));
     
 endmodule 
