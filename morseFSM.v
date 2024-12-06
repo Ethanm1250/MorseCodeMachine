@@ -6,6 +6,7 @@
 
 module morseFSM ( 
   input [1:0] inputSignal, // dot, dash, or space
+  input reset,
   input clk,
   output reg [7:0] letter, 
   output reg done 
@@ -53,6 +54,9 @@ module morseFSM (
       end
     if (inputSignal == 2'b00) begin
         state <= state;
+    end
+    if (reset) begin
+        state <= start;
     end
     //if (state == start && inputSignal == `SPACE) begin
     //  	state <= space;
@@ -158,7 +162,7 @@ module morseFSM (
 
   always @( state ) begin
       case (state)
-        start: begin done = 1; letter = letter; end
+        start: begin done = 1; letter = 0; end
         A: begin done = 0; letter = 65; end
         B: begin done = 0; letter = 66; end
         C: begin done = 0; letter = 67; end

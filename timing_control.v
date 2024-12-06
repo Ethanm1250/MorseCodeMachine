@@ -10,8 +10,8 @@ module timing_control (
     reg [15:0] press_counter = 0;
     reg prev_button = 0;
 
-    parameter DOT_THRESHOLD = 5;  
-    parameter  DASH_THRESHOLD = 3; 
+    parameter DOT_THRESHOLD = 20;  
+   // parameter  DASH_THRESHOLD = 3; 
 
     always @(posedge clk) begin
         if (button) begin
