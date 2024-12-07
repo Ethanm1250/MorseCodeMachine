@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module ascii_rom(
 	input clk, 
 	input wire [10:0] addr,
@@ -2194,4 +2196,3 @@ module ascii_rom(
 			11'h7ff: data = 8'b11111111;	//********
 		endcase
 endmodule
-

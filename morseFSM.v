@@ -4,15 +4,40 @@
 //`define SEND 2'b11
 //`define SPACE 3'h4
 
-module morseFSM ( 
+module morseFSM (
   input [1:0] inputSignal, // dot, dash, or space
   input reset,
   input clk,
-  output reg [7:0] letter, 
-  output reg done 
+  output reg [7:0] letter0, 
+  output reg [7:0] letter1,
+  output reg [7:0] letter2,
+  output reg [7:0] letter3,
+  output reg [7:0] letter4,
+  output reg [7:0] letter5,
+  output reg [7:0] letter6,
+  output reg [7:0] letter7,
+  output reg [7:0] letter8,
+  output reg [7:0] letter9,
+  output reg done
 );
-  
+
+  reg [7:0] letters [9:0];
   reg [5:0] state;
+  reg [7:0] temp_letter;
+  reg [3:0] counter;
+  
+  always @ (*) begin
+  letter0 = letters[0];
+  letter1 = letters[1];
+  letter2 = letters[2];
+  letter3 = letters[3];
+  letter4 = letters[4];
+  letter5 = letters[5];
+  letter6 = letters[6];
+  letter7 = letters[7];
+  letter8 = letters[8];
+  letter9 = letters[9];
+end
   
   localparam start = 0,
              A = 1,
@@ -45,11 +70,15 @@ module morseFSM (
   
   initial begin
       state = start;
-      letter = 8'b0;
+      temp_letter = 8'b0;
+      counter = 0;
   end
 
+        
   always @ (posedge clk) begin
     if (inputSignal == 2'b11) begin
+        letters[counter] <= temp_letter;
+        counter <= counter + 1;
         state <= start;
       end
     if (inputSignal == 2'b00) begin
@@ -57,6 +86,7 @@ module morseFSM (
     end
     if (reset) begin
         state <= start;
+              
     end
     //if (state == start && inputSignal == `SPACE) begin
     //  	state <= space;
@@ -162,34 +192,37 @@ module morseFSM (
 
   always @( state ) begin
       case (state)
-        start: begin done = 1; letter = 0; end
-        A: begin done = 0; letter = 65; end
-        B: begin done = 0; letter = 66; end
-        C: begin done = 0; letter = 67; end
-        D: begin done = 0; letter = 68; end
-        E: begin done = 0; letter = 69; end
-        F: begin done = 0; letter = 70; end
-        G: begin done = 0; letter = 71; end
-        H: begin done = 0; letter = 72; end
-        I: begin done = 0; letter = 73; end
-        J: begin done = 0; letter = 74; end
-        K: begin done = 0; letter = 75; end
-        L: begin done = 0; letter = 76; end
-        M: begin done = 0; letter = 77; end
-        N: begin done = 0; letter = 78; end
-        O: begin done = 0; letter = 79; end
-        P: begin done = 0; letter = 80; end
-        Q: begin done = 0; letter = 81; end
-        R: begin done = 0; letter = 82; end
-        S: begin done = 0; letter = 83; end
-        T: begin done = 0; letter = 84; end
-        U: begin done = 0; letter = 85; end
-        V: begin done = 0; letter = 86; end
-        W: begin done = 0; letter = 87; end
-        X: begin done = 0; letter = 88; end
-        Y: begin done = 0; letter = 89; end
-        Z: begin done = 0; letter = 90; end
-        space: begin done = 0; letter = 32; end
+        start: begin done = 1; temp_letter = 0; end
+        A: begin done = 0; temp_letter = 65; end
+        B: begin done = 0; temp_letter = 66; end
+        C: begin done = 0; temp_letter = 67; end
+        D: begin done = 0; temp_letter = 68; end
+        E: begin done = 0; temp_letter = 69; end
+        F: begin done = 0; temp_letter = 70; end
+        G: begin done = 0; temp_letter = 71; end
+        H: begin done = 0; temp_letter = 72; end
+        I: begin done = 0; temp_letter = 73; end
+        J: begin done = 0; temp_letter = 74; end
+        K: begin done = 0; temp_letter = 75; end
+        L: begin done = 0; temp_letter = 76; end
+        M: begin done = 0; temp_letter = 77; end
+        N: begin done = 0; temp_letter = 78; end
+        O: begin done = 0; temp_letter = 79; end
+        P: begin done = 0; temp_letter = 80; end
+        Q: begin done = 0; temp_letter = 81; end
+        R: begin done = 0; temp_letter = 82; end
+        S: begin done = 0; temp_letter = 83; end
+        T: begin done = 0; temp_letter = 84; end
+        U: begin done = 0; temp_letter = 85; end
+        V: begin done = 0; temp_letter = 86; end
+        W: begin done = 0; temp_letter = 87; end
+        X: begin done = 0; temp_letter = 88; end
+        Y: begin done = 0; temp_letter = 89; end
+        Z: begin done = 0; temp_letter = 90; end
+        space: begin done = 0; temp_letter = 32; end
       endcase
   end
+  
+   
 endmodule
+

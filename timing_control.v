@@ -17,7 +17,7 @@ module timing_control (
         if (button) begin
             press_counter <= press_counter + 1; 
         end else if (prev_button) begin
-            // Button released, classify input
+            // button released
             if (press_counter < DOT_THRESHOLD) begin
                 dotOrDash <= 2'b01;
             end else if (press_counter > DOT_THRESHOLD) begin
