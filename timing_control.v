@@ -10,8 +10,8 @@ module timing_control (
     reg [15:0] press_counter = 0;
     reg prev_button = 0;
 
-    parameter DOT_THRESHOLD = 20;  
-   // parameter  DASH_THRESHOLD = 3; 
+    parameter DOT_THRESHOLD = 5;  
+    parameter  DASH_THRESHOLD = 15; 
 
     always @(posedge clk) begin
         if (button) begin
@@ -20,7 +20,7 @@ module timing_control (
             // button released
             if (press_counter < DOT_THRESHOLD) begin
                 dotOrDash <= 2'b01;
-            end else if (press_counter > DOT_THRESHOLD) begin
+            end else if (press_counter > DASH_THRESHOLD) begin
                 dotOrDash <= 2'b10;
             end 
             press_counter <= 0;
