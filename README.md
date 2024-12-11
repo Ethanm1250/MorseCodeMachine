@@ -12,4 +12,5 @@ Overview of our code:
 
 This block diagram shows how our modules are connected. Firstly, clk_divider will output divided_clock which slows the clock from 100 MHz to 1/10 Hz. Then, divided_clock will be used in timing_control and morseFSM as inputs for the clock. timing_control will output dotOrDash which is a 2-bit variable that corresponds to whether the user sent a dot or a dash. This output will be sent to morseFSM as inputSignal. In morseFSM, there is a 10 element array that stores the 10 letter outputs. The letter outputs depend on the inputSignal (00 for wait, 10 for dash, 01 for dot, and 11 for send). The outputs will follow the morse code binary tree diagram and act like a state machine diagram as it changes based on the inputs. The 10 letter outputs will be sent to ascii_test which will assign the letter to specific x coordinates on the VGA output.
 
-![Capture](https://github.com/user-attachments/assets/415608d3-6b8f-47ad-b989-88d6f060bee4)
+
+![Capture](https://github.com/user-attachments/assets/016d6a46-17f0-4183-a6f0-047ab986ea58)
