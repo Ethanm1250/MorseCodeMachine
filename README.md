@@ -2,7 +2,7 @@ Project Name: MorseCodeMachiney
 
 Team Members: Denalda Gashi, Ethan Manfredi, Kevin Zhang
 
-Link to Demo Video: (url)(https://drive.google.com/file/d/1YtOQ32_DJMiCAWIBgNSVGgrBSfq-Ay5E/view?usp=drive_link)
+Link to Demo Video: https://drive.google.com/file/d/1YtOQ32_DJMiCAWIBgNSVGgrBSfq-Ay5E/view?usp=drive_link
 
 Our project is a Morse Code Translator that utilitzes three buttons on the FPGA: button, send, and reset. Button corresponds to a dot or a dash, the user will press send at the end of each letter sequence, and can press reset tp clear the screen. Our Morse Code Translator follows the standard timing for Morse Code where if the user holds the button for a second then a dot will be sent and if it's held for more than 3 seconds then a dash is sent. We used a state machine diagram to model our morseFSM code. Our Morse Code Translator is capable of outputting 10 letters correctly decoded to the VGA output.
 
