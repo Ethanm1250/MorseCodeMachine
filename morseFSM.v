@@ -76,7 +76,7 @@ end
 
         
   always @ (posedge clk) begin
-    if (inputSignal == 2'b11) begin
+    if (inputSignal == 2'b11 && state != start) begin
         letters[counter] <= temp_letter;
         counter <= counter + 1;
         state <= start;
@@ -85,8 +85,7 @@ end
         state <= state;
     end
     if (reset) begin
-        state <= start;
-              
+        state <= start;          
     end
     //if (state == start && inputSignal == `SPACE) begin
     //  	state <= space;
@@ -225,4 +224,3 @@ end
   
    
 endmodule
-
